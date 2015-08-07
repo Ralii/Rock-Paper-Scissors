@@ -5,6 +5,10 @@ import java.util.Random;
 /**
  * Created by Ralii on 1.8.15.
  */
+
+/*
+Luokka sisältää tietokonepelaajan vastaukset voittoon ja häviöön. Lisäksi kaksi apumetodia vastauksen satunnaistamiseen.
+ */
 public class Responses {
     private final String[] winning;
     private final String[] losing;
@@ -14,13 +18,14 @@ public class Responses {
         this.winning = new String[4];
         this.losing = new String[4];
         this.random = new Random();
-
         init();
     }
-
+    // Satunnaisen voittovastauksen valitseminen.
     public String getRandomWin(){ return winning[getRandom(4)]; }
+    // Satunnaisen häviövastauksen valitseminen.
     public String getRandomLoose(){ return losing[getRandom(4)]; }
 
+    // vastausten sisällyttäminen käytettäviin tietorakenteisiin.
     private void init(){
         winning[0] = "Victory has a thousand fathers, but defeat is an orphan. MUAHAHAH";
         winning[1] = "Victory belongs to the most persevering.";
@@ -34,6 +39,7 @@ public class Responses {
         losing[3] = "The mark of a great player is in his ability to come back. The great champions have all come back from defeat.";
         losing[4] = "If you don’t invest very much, then defeat doesn’t hurt very much and winning is not very exciting.";
     }
+    // Satunnaisluvun arpominen.
     private int getRandom(int cap){
         return random.nextInt(cap);
     }
