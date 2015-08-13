@@ -4,49 +4,64 @@ package dataStructures;
  * Created by Ralii on 9.8.15.
  */
 public class RaliStack {
-    Type[] arr;
+    protected Type[] arr;
     int acc;
     int decc;
 
     public RaliStack(){
-        this.arr = new Type[3];
-        this.acc = 0;
-        this.decc = 3;
+        this.arr = new Type[4];
+        this.acc = 3;
+        this.decc = 0;
     }
+
+    public RaliStack(RaliStack newStack){
+        if(newStack != null) {
+            for(int x = 0 ; x < newStack.arr.length -1 ; x++){
+                if(newStack.arr[x] != null) {arr[x] = newStack.arr[x]; }
+            }
+        }
+    }
+
     // Arvon laittaminen taulukkoon
     public void insert(Type t){
-
-        if(acc == 3) {
-            acc = 0;
-            for(Type type : arr) { type = null; }
-            arr[0] = t;
-            return;
+        if(arr[0] != null) { nullArr(); }
+        for(int x = 0 ; x < arr.length -1 ; x++) {
+            if(arr[x] == null) { arr[x] = t; }
         }
-        if( arr[acc] == null ) { arr[acc] = t; acc = 0; return;  }
-
-        acc++;
-        insert(t);
     }
 
     // Viimeisimmän arvon katsominen taulukosta.
     public Type peek(){
-        if(decc == 0) { decc = 3; return null; }
-        if(arr[decc] != null) {int d = decc; decc = 3 ; return arr[d]; }
-        else { decc--; peek(); }
+        for(int x = arr.length -1 ; x > 0 ; x--) {
+            if(arr[x] != null) { return arr[x]; }
+        }
         return null;
     }
 
     // "Poppaa" päällimmäisen, tässä tapauksessa perimmäisen arvon pois taulukosta.
     public Type pop(){
-        if(decc == 0) { decc = 3; return null; }
-        if(arr[decc] != null) {
-            int d = decc;
-            decc = 3 ;
-            Type poppable = arr[d];
-            arr[d] = null;
-            return poppable;
+        for(int x = arr.length -1 ; x > 0 ; x--) {
+            if(arr[x] != null) {
+                Type t = arr[x];
+                arr[x] = null;
+                return t;
+            }
         }
-        else { decc--; peek(); }
         return null;
     }
+    // Stackin koon laskeminen.
+    public int size(){
+        int s = 0;
+        for(int x = 0 ; x < arr.length -1 ; x++) {
+            if(arr[x] != null ) { s++;}
+        }
+        return s;
+    }
+
+    private void nullArr(){
+        for(int i = 0 ; i < arr.length -1 ; i++) {
+            arr[i] = null;
+        }
+    }
+
 }

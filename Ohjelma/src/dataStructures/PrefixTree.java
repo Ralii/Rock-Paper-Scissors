@@ -42,7 +42,7 @@ public class PrefixTree {
     Metodi joka kutsuu rekursiivista metodia jonka tarkoituksena on lisätä stakin arvojoukon viimeinen arvo puuhun. Tätä arvoa voidaan käyttää
     pelaajan seuraavan siirron arvioinnissa valitsemalla aina suurimman arvon omaava tyyppi samasta joukosta.
      */
-    public void addPattern(Stack<Type> stack) {
+    public void addPattern(RaliStack stack) {
         switch (stack.peek()) {
             case PAPER:
                 seqAdd(stack, first.left);
@@ -61,18 +61,16 @@ public class PrefixTree {
      Eli mennään esimerkiksi kivi - paperi - paperi ja katsotaan millä paperin haaroista on suurin arvo. Tällöin voidaan olettaa,
      että pelaaja valitsee jatkossakin saman historian kohdalla arvon, jota on valittu aikaisemmin eniten.
      */
-    public void getPattern(Stack<Type> stack) {
-        switch (stack.peek()) {
+    public Type getPattern(RaliStack stack) {
+        switch ( stack.peek() ) {
             case PAPER:
-                System.out.println("a");
-                break;
+                return seqHighest(stack, first.left);
             case ROCK:
-                System.out.println("B");
-                break;
+                return seqHighest(stack, first.center);
             case SCISSORS:
-                System.out.println("C");
-                break;
+                return seqHighest(stack, first.right);
         }
+        return Type.PAPER;
     }
 
     public boolean isEmpty() {
@@ -81,7 +79,7 @@ public class PrefixTree {
     /*
     Arvonlisäyksen rekursiivinen jatkometodi joka lisää arvon Prefixpuuhun.
      */
-    private void seqAdd(Stack<Type> stack, Node node) {
+    private void seqAdd(RaliStack stack, Node node) {
         if (node.value == stack.peek()) {
             if (stack.size() != 1) {
                 stack.pop();
@@ -98,7 +96,7 @@ public class PrefixTree {
     /*
     Arvon hakemisen rekursiivinen jatkometodi, joka hakee arvon Prefixpuusta.
      */
-    private Type seqHighest(Stack<Type> stack, Node node) {
+    private Type seqHighest(RaliStack stack, Node node) {
         if (node.value == stack.peek()) {
             if (stack.size() != 1) {
                 stack.pop();
@@ -114,7 +112,6 @@ public class PrefixTree {
                 if(a > b && a > c) { return node.left.value; }
                 if(b > a && b > c) { return node.center.value; }
                 if(c > a && c > b) { return node.right.value; }
-
             }
         }
         return Type.PAPER;

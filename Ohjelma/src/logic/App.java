@@ -1,6 +1,11 @@
 package logic;
 
 import dataStructures.PrefixTree;
+import dataStructures.RaliStack;
+import dataStructures.Responses;
+import dataStructures.Type;
+
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -13,10 +18,14 @@ Pelin päärunko, joka ohjaa pelin kulkua.
 public class App {
     PrefixTree tree;
     Scanner in;
+    RaliStack stack;
+    Responses responses;
 
     public App(){
         this.tree = new PrefixTree(4);
         this.in = new Scanner(System.in);
+        this.stack = new RaliStack();
+        this.responses = new Responses();
     }
     /*
     Pelin aloittaminen. Aloitusviesti, odotus ja pelaajan valinnan kysyminen.
@@ -30,7 +39,7 @@ public class App {
     Kysytään pelaajalta sen valintaa ja hoidetaan valinnan jatkokäsittelyt; Valinnan tallentaminen puuhun ja arvion pelaajan seuraavasta valinnasta
     hakemisen.
      */
-    public void askChoice() throws InterruptedException {
+    private void askChoice() throws InterruptedException {
 
         System.out.println("Make your choice!");
         System.out.println("R = Rock P = Paper S = Scissors");
@@ -40,17 +49,53 @@ public class App {
         switch (choice) {
             case "R":
                 System.out.println("You threw Rock!");
+                stack.insert(Type.ROCK);
+                response();
                 break;
             case "P":
                 System.out.println("You threw Paper!");
+                stack.insert(Type.PAPER);
+                response();
                 break;
             case "S":
                 System.out.println("You threw Scissors!");
+                stack.insert(Type.SCISSORS);
+                response();
                 break;
             default:
                 System.out.println("Incorrect answer, please try again.");
                 Thread.sleep(500);
                 askChoice();
         }
+    }
+    private void response() throws InterruptedException {
+        // add tyhjentää stackin. Keksi vaihtoehto.
+        RaliStack s = new RaliStack(stack);
+        tree.addPattern(stack);
+        Type t = tree.getPattern(s);
+
+        Thread.sleep(500);
+        System.out.println("My answer is " + t.toString() +"!");
+
+        if(doesWin(t)) { System.out.println(responses.getRandomWin());}
+        else { System.out.println(responses.getRandomLoose()); }
+
+        playAgain();
+    }
+
+    private boolean doesWin(Type aiAnswer){return aiAnswer.losesTo.equals(stack.peek());}
+
+    private void playAgain() throws InterruptedException {
+        Thread.sleep(500);
+        System.out.println("Would you like to play again?" + "Y = YES" + "N = NO");
+        String choice = in.nextLine().toUpperCase();
+
+        switch(choice) {
+            case "Y":
+                askChoice();
+            case "N":
+                System.out.println("I'm forever alone!");
+        }
+
     }
 }

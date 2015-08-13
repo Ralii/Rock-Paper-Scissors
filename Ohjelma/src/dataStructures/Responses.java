@@ -15,8 +15,8 @@ public class Responses {
     private final Random random;
 
     public Responses(){
-        this.winning = new String[4];
-        this.losing = new String[4];
+        this.winning = new String[5];
+        this.losing = new String[5];
         this.random = new Random();
         init();
     }
