@@ -20,6 +20,7 @@ public class App {
     Scanner in;
     RaliStack stack;
     Responses responses;
+    Type lastAnswer;
 
     public App(){
         this.tree = new PrefixTree(4);
@@ -50,16 +51,19 @@ public class App {
             case "R":
                 System.out.println("You threw Rock!");
                 stack.insert(Type.ROCK);
+                lastAnswer = Type.ROCK;
                 response();
                 break;
             case "P":
                 System.out.println("You threw Paper!");
                 stack.insert(Type.PAPER);
+                lastAnswer = Type.PAPER;
                 response();
                 break;
             case "S":
                 System.out.println("You threw Scissors!");
                 stack.insert(Type.SCISSORS);
+                lastAnswer = Type.SCISSORS;
                 response();
                 break;
             default:
@@ -71,23 +75,25 @@ public class App {
     private void response() throws InterruptedException {
         // add tyhjentää stackin. Keksi vaihtoehto.
         RaliStack s = new RaliStack(stack);
-        tree.addPattern(stack);
+        RaliStack st = new RaliStack(stack);
+        tree.addPattern(st);
         Type t = tree.getPattern(s);
 
         Thread.sleep(500);
         System.out.println("My answer is " + t.toString() +"!");
 
-        if(doesWin(t)) { System.out.println(responses.getRandomWin());}
-        else { System.out.println(responses.getRandomLoose()); }
+        if(doesWin(t)) {
+             System.out.println("AI wins!\n" + responses.getRandomWin());}
+        else { System.out.println("AI looses! \n" + responses.getRandomLoose()); }
 
         playAgain();
     }
 
-    private boolean doesWin(Type aiAnswer){return aiAnswer.losesTo.equals(stack.peek());}
+    private boolean doesWin(Type aiAnswer){return !aiAnswer.losesTo.equals(lastAnswer);}
 
     private void playAgain() throws InterruptedException {
         Thread.sleep(500);
-        System.out.println("Would you like to play again?" + "Y = YES" + "N = NO");
+        System.out.println("Would you like to play again? " + "Y = YES " + "N = NO");
         String choice = in.nextLine().toUpperCase();
 
         switch(choice) {
@@ -95,6 +101,7 @@ public class App {
                 askChoice();
             case "N":
                 System.out.println("I'm forever alone!");
+                System.exit(1);
         }
 
     }

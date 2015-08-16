@@ -81,13 +81,20 @@ public class PrefixTree {
      */
     private void seqAdd(RaliStack stack, Node node) {
         if (node.value == stack.peek()) {
-            if (stack.size() != 1) {
+            if(stack.size() == 1) {
+                Type t = stack.pop();
+                if(t == Type.PAPER) { node.left.ammount++; }
+                if(t == Type.ROCK) { node.center.ammount++; }
+                if(t == Type.SCISSORS) { node.right.ammount++; }
+            }
+            if (stack.size() != 0) {
                 stack.pop();
                 seqAdd(stack, node.left);
                 seqAdd(stack, node.center);
                 seqAdd(stack, node.right);
 
-            } else {
+
+            } else if(stack.size() == 0) {
                 node.ammount += 1;
             }
         }
@@ -98,13 +105,13 @@ public class PrefixTree {
      */
     private Type seqHighest(RaliStack stack, Node node) {
         if (node.value == stack.peek()) {
-            if (stack.size() != 1) {
+            if (stack.size() != 0) {
                 stack.pop();
-                seqAdd(stack, node.left);
-                seqAdd(stack, node.center);
-                seqAdd(stack, node.right);
+                seqHighest(stack, node.left);
+                seqHighest(stack, node.center);
+                seqHighest(stack, node.right);
 
-            } else {
+            } else if(stack.size() == 1) {
                 int a = node.left.ammount;
                 int b = node.center.ammount;
                 int c = node.right.ammount;
@@ -114,7 +121,7 @@ public class PrefixTree {
                 if(c > a && c > b) { return node.right.value; }
             }
         }
-        return Type.PAPER;
+        return Type.ROCK;
     }
 
 }

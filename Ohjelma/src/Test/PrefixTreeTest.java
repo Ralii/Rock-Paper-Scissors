@@ -40,8 +40,12 @@ public class PrefixTreeTest extends TestCase {
     public void testGetPattern() throws Exception {
         RaliStack stak = new RaliStack();
         stak.insert(Type.PAPER);
+        RaliStack s = new RaliStack(stak);
         Thread.sleep(500);
         System.out.println(stak.peek());
+        tree.addPattern(stak);
+        tree.getPattern(s);
+
 
     }
 
