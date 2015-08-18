@@ -121,8 +121,7 @@ public class PrefixTree {
                 if(c > a && c > b) { return node.right.value; }
             }
         }
-        return Type.ROCK;
+       return Type.ROCK;
     }
-
 }
 

@@ -4,22 +4,18 @@ package dataStructures;
  * Created by Ralii on 9.8.15.
  */
 public class RaliStack {
-    public Type[] arr;
-    int acc;
-    int decc;
+    private Type[] arr;
     Type last;
 
     public RaliStack(){
         this.arr = new Type[4];
-        this.acc = 3;
-        this.decc = 0;
         nullArr();
     }
 
     public RaliStack(RaliStack newStack){
         this();
         if(newStack != null && newStack.arr != null && newStack.arr.length > 1) {
-            for(int x = 0 ; x < newStack.arr.length -1 ; x++){
+            for(int x = 0 ; x < newStack.arr.length  ; x++){
                 if(newStack.arr[x] != null) {arr[x] = newStack.arr[x]; }
             }
         }
@@ -28,8 +24,8 @@ public class RaliStack {
     // Arvon laittaminen taulukkoon
     // Laitetaan ensimmäiseen nulliin arvo. Loopataan alusta loppuun.
     public void insert(Type t){
-        if(arr[3] != null) { nullArr(); }
-        for(int x = 0 ; x < arr.length -1 ; x++) {
+        if(arr[0] != null) { nullArr(); }
+        for(int x = arr.length -1 ; x > -1 ; x--) {
             if(arr[x] == null) { arr[x] = t; return; }
         }
     }
@@ -61,14 +57,14 @@ public class RaliStack {
     // Stackin koon laskeminen.
     public int size(){
         int s = 0;
-        for(int x = 0 ; x < arr.length -1 ; x++) {
+        for(int x = 0 ; x < arr.length ; x++) {
             if(arr[x] != null ) { s++;}
         }
         return s;
     }
 
     private void nullArr(){
-        for(int i = 0 ; i < arr.length -1 ; i++) {
+        for(int i = 0 ; i < arr.length ; i++) {
             arr[i] = null;
         }
     }

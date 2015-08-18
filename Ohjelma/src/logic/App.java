@@ -82,10 +82,13 @@ public class App {
         Thread.sleep(500);
         System.out.println("My answer is " + t.toString() +"!");
 
-        if(doesWin(t)) {
-             System.out.println("AI wins!\n" + responses.getRandomWin());}
-        else { System.out.println("AI looses! \n" + responses.getRandomLoose()); }
-
+        if(t.equals(lastAnswer)) {
+            System.out.println("It's a tie!");
+        } else {
+            if(doesWin(t)) {
+                System.out.println("AI wins!\n" + responses.getRandomWin());}
+            else { System.out.println("AI looses! \n" + responses.getRandomLoose()); }
+        }
         playAgain();
     }
 
