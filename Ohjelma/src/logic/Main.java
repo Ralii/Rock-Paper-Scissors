@@ -12,7 +12,7 @@ Ohjelman pääluokka joka käynnistää pelin pääluokan ja kysyy pelaajan vast
  */
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        App app = new App();
+        App2 app = new App2();
         app.startGame();
     }
 }
