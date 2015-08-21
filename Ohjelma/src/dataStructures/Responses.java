@@ -3,11 +3,7 @@ package dataStructures;
 import java.util.Random;
 
 /**
- * Created by Ralii on 1.8.15.
- */
-
-/*
-Luokka sisältää tietokonepelaajan vastaukset voittoon ja häviöön. Lisäksi kaksi apumetodia vastauksen satunnaistamiseen.
+ * Responses for winning and loosing the game.
  */
 public class Responses {
     private final String[] winning;
@@ -20,12 +16,22 @@ public class Responses {
         this.random = new Random();
         init();
     }
-    // Satunnaisen voittovastauksen valitseminen.
+
+    /**
+     * Getter for the random win quote.
+     * @return Returns random win quote.
+     */
     public String getRandomWin(){ return winning[getRandom(4)]; }
-    // Satunnaisen häviövastauksen valitseminen.
+
+    /**
+     * Getter for the random loose quote.
+     * @return Returns random loose quote.
+     */
     public String getRandomLoose(){ return losing[getRandom(4)]; }
 
-    // vastausten sisällyttäminen käytettäviin tietorakenteisiin.
+    /**
+     * Initializing the data structures inside of the Class.
+     */
     private void init(){
         winning[0] = "Victory has a thousand fathers, but defeat is an orphan. MUAHAHAH";
         winning[1] = "Victory belongs to the most persevering.";
@@ -39,7 +45,12 @@ public class Responses {
         losing[3] = "The mark of a great player is in his ability to come back. The great champions have all come back from defeat.";
         losing[4] = "If you don’t invest very much, then defeat doesn’t hurt very much and winning is not very exciting.";
     }
-    // Satunnaisluvun arpominen.
+
+    /**
+     * Getting the random index for the quote.
+     * @param cap Is the maximum limit of the index.
+     * @return Returns the index for the quote.
+     */
     private int getRandom(int cap){
         return random.nextInt(cap);
     }

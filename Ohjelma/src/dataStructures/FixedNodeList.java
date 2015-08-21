@@ -4,7 +4,7 @@ package dataStructures;
 import exeption.ListFullExeption;
 
 /**
- * Created by Ralii on 18.8.15.
+ * Fixed size list of trie nodes used with RaliTrie
  */
 public class FixedNodeList {
     RaliTrieNode[] list;
@@ -14,6 +14,11 @@ public class FixedNodeList {
         this.index = 0;
     }
 
+    /**
+     * Add RaliTrieNode to FixedNodeList
+     * @param t RaliTrieNode to add to FixedNodeList
+     * @throws ListFullExeption throws and exception with the fixed size of the list is consumed
+     */
     public void add(RaliTrieNode t) throws ListFullExeption {
         if(index < list.length) {
             this.list[index] = t;
@@ -25,6 +30,10 @@ public class FixedNodeList {
         }
     }
 
+    /**
+     * Length of the FixedNodeList
+     * @return returns the used length of FixedNodeList not the static limit
+     */
     public int length(){
         int x = 0;
         for(int i = 0 ; i < list.length ; i++) {
@@ -33,6 +42,11 @@ public class FixedNodeList {
         return x;
     }
 
+    /**
+     * Getter for RaliTrieNode in FixedNodeList
+     * @param index input the wanted index
+     * @return returns the RaliTrieNode in the index position
+     */
     public RaliTrieNode get(int index) {
         return list[index];
     }

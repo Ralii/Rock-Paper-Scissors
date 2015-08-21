@@ -10,7 +10,7 @@ import exeption.ListFullExeption;
 import java.util.Random;
 
 /**
- * Created by Ralii on 20.8.15.
+ * Ai component of the program that handles the mechanics of the game.
  */
 public class Ai {
     private ShiftingTypeList list;
@@ -23,6 +23,11 @@ public class Ai {
         this.trie = new RaliTrie(6);
     }
 
+    /**
+     * For getting the game result for player chosen type and choosing the ai type.
+     * @param t Type player has chosen for this round.
+     * @return returns the RESULT of the game.
+     */
     public Result result(Type t) {
         list.add(t);
         if(list.length() < 5) {
@@ -45,6 +50,10 @@ public class Ai {
         else return Result.TIE;
     }
 
+    /**
+     * Deciding a random result for the game.
+     * @return returns a RESULT. The outcome of the game.
+     */
     private Result giveRandom(){
         int a = r.nextInt(2);
         if(a == 0) { return Result.PLAYERWINS; }

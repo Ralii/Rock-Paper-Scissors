@@ -3,7 +3,7 @@ package dataStructures;
 import exeption.ListFullExeption;
 
 /**
- * Created by Ralii on 18.8.15.
+ * Custom Trie that follows the basic structure of a Trie but has distinct methods of it's own.
  */
 public class RaliTrie {
     RaliTrieNode first;
@@ -14,6 +14,11 @@ public class RaliTrie {
         init(height, this.first);
     }
 
+    /**
+     * Initializing the RaliTrie and it's values.
+     * @param height Defines the height of the RaliTrie and is -1 height because of the unused rootnode.
+     * @param node Rootnode of the RaliTrie.
+     */
     private void init(int height, RaliTrieNode node) {
         if (height == 0) {
             return;
@@ -32,6 +37,10 @@ public class RaliTrie {
         }
     }
 
+    /**
+     * Add values to the RaliTrie
+     * @param arr Requires an array of Types.
+     */
     public void add(Type[] arr) {
         Boolean firstPass = true;
         switch (arr[0]) {
@@ -44,6 +53,13 @@ public class RaliTrie {
         }
     }
 
+    /**
+     * Helper method for add. Handles the recursive insert part.
+     * @param arr Array of Types.
+     * @param index Index of array. Required for recursion to know the right value.
+     * @param node Current node for the recursive method.
+     * @param firstPass Indication whether the index should be raised at the first pass.
+     */
     private void addRec(Type[] arr, int index, RaliTrieNode node, Boolean firstPass) {
         if (arr[index].equals(node.getValue())) {
             if (!firstPass) {
@@ -67,6 +83,12 @@ public class RaliTrie {
         }
     }
 
+    /**
+     * Get estimation of the most used Type in continuation of the combination.
+     * @param arr Array of Types.
+     * @return The Types in the last node.
+     * @throws ListFullExeption throws exeption if the fixed size list is full.
+     */
     public Type getEstimate(Type[] arr) throws ListFullExeption {
         Boolean firstPass = true;
         switch (arr[0]) {
@@ -83,6 +105,14 @@ public class RaliTrie {
         return null;
     }
 
+    /**
+     * Helper method for getEstimate. Handles the recursive insert part.
+     * @param arr Array of Types.
+     * @param index Index of array. Required for recursion to know the right value.
+     * @param node Current node for the recursive method.
+     * @param firstPass Indication whether the index should be raised at the first pass.
+     * @throws ListFullExeption throws exeption if the fixed size list is full.
+     */
     private FixedNodeList getRec(Type[] arr, int index, RaliTrieNode node, FixedNodeList list, Boolean firstPass) throws ListFullExeption {
         if (index == arr.length - 2 && arr[index].equals(node.getValue())) {
             list.add(node.getNodes()[0]);
@@ -105,6 +135,11 @@ public class RaliTrie {
         return list;
     }
 
+    /**
+     * Helper method for getEstimate. Used for comparing the return values.
+     * @param l FixedNodeList that holds the node values from the recursive method.
+     * @return returns the node which has the biggest value in FixedNodeList.
+     */
     private Type findBiggest(FixedNodeList l) {
         if (l.get(0).getAmmount() > l.get(1).getAmmount() && l.get(0).getAmmount() > l.get(2).getAmmount()) {
             return l.get(0).getValue();

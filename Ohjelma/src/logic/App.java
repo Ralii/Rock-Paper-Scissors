@@ -7,19 +7,23 @@ import dataStructures.Result;
 import java.util.Scanner;
 
 /**
- * Created by Ralii on 19.8.15.
+ * Main class of the game. Handles the text user-interface and delegates methods to ai component.
  */
-public class App2 {
+public class App {
     Scanner in;
     Responses responses;
     Ai ai;
 
-    public App2(){
+    public App(){
         this.in = new Scanner(System.in);
         this.responses = new Responses();
         this.ai = new Ai();
     }
 
+    /**
+     * Method for starting the game. Includes the event loop.
+     * @throws InterruptedException Throws exeption if thread.sleep is interrupted
+     */
     public void startGame() throws InterruptedException {
         while(true) {
             System.out.println("Welcome to the game of life! Rock-Paper-Scissors");
@@ -53,6 +57,11 @@ public class App2 {
         }
     }
 
+    /**
+     * Quitting the game and exiting the program if the user chooses so.
+     * @return Wether the user chose to quit the program.
+     * @throws InterruptedException If thread.sleep is interrupted.
+     */
     private Boolean quit() throws InterruptedException {
         while (true) {
         Thread.sleep(500);
@@ -73,6 +82,10 @@ public class App2 {
         }
     }
 
+    /**
+     * Getting the result of the game and notifying the user about the end result.
+     * @param t Type user has chosen for this round.
+     */
     private void startRound(Type t) {
         Result result = ai.result(t);
         switch(result) {
