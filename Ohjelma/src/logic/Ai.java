@@ -1,6 +1,6 @@
 package logic;
 
-import com.sun.org.apache.regexp.internal.REUtil;
+
 import dataStructures.Type;
 import dataStructures2.RaliTrie;
 import dataStructures2.Result;
