@@ -1,4 +1,4 @@
-package dataStructures2;
+package dataStructures;
 
 /**
  * Created by Ralii on 20.8.15.

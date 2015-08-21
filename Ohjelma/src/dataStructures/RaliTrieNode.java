@@ -1,6 +1,4 @@
-package dataStructures2;
-
-import dataStructures.Type;
+package dataStructures;
 
 /**
  * Created by Ralii on 18.8.15.

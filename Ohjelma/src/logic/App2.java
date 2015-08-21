@@ -3,7 +3,7 @@ package logic;
 
 import dataStructures.Responses;
 import dataStructures.Type;
-import dataStructures2.Result;
+import dataStructures.Result;
 import java.util.Scanner;
 
 /**

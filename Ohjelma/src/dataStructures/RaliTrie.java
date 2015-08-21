@@ -1,6 +1,5 @@
-package dataStructures2;
+package dataStructures;
 
-import dataStructures.Type;
 import exeption.ListFullExeption;
 
 /**

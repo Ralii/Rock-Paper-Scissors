@@ -1,8 +1,5 @@
 package logic;
 
-import dataStructures.PrefixTree;
-
-import java.util.Scanner;
 
 /**
  * Created by Ralii on 1.8.15.

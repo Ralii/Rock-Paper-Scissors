@@ -2,9 +2,9 @@ package logic;
 
 
 import dataStructures.Type;
-import dataStructures2.RaliTrie;
-import dataStructures2.Result;
-import dataStructures2.ShiftingTypeList;
+import dataStructures.RaliTrie;
+import dataStructures.Result;
+import dataStructures.ShiftingTypeList;
 import exeption.ListFullExeption;
 
 import java.util.Random;

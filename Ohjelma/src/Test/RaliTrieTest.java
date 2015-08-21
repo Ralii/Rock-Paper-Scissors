@@ -1,7 +1,7 @@
 package Test;
 
 import dataStructures.Type;
-import dataStructures2.RaliTrie;
+import dataStructures.RaliTrie;
 import junit.framework.TestCase;
 
 public class RaliTrieTest extends TestCase {

@@ -1,6 +1,4 @@
-package dataStructures2;
-
-import dataStructures.Type;
+package dataStructures;
 
 /**
  * Created by Ralii on 20.8.15.
@@ -37,7 +35,6 @@ public class ShiftingTypeList {
         for(int i = 0 ; i < list.length ; i++) {
             if(list[i] != null) { a++; }
         }
-        System.out.println(a);
         return a;
     }
 
