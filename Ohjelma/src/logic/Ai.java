@@ -45,8 +45,8 @@ public class Ai {
             return null;
         }
 
-        if(playerAnswer.losesTo.equals(aiAnswer)) { return Result.PLAYERWINS; }
-        if(aiAnswer.losesTo.equals(playerAnswer)) { return Result.AIWINS; }
+        if(playerAnswer.losesTo.equals(aiAnswer)) { return Result.AIWINS; }
+        if(aiAnswer.losesTo.equals(playerAnswer)) { return Result.PLAYERWINS; }
         else return Result.TIE;
     }
 
@@ -54,8 +54,8 @@ public class Ai {
      * Deciding a random result for the game.
      * @return returns a RESULT. The outcome of the game.
      */
-    private Result giveRandom(){
-        int a = r.nextInt(2);
+    Result giveRandom(){
+        int a = r.nextInt(3);
         if(a == 0) { return Result.PLAYERWINS; }
         if(a == 1) { return Result.TIE; }
         if(a == 2) { return Result.AIWINS; }

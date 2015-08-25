@@ -1,5 +1,6 @@
 package Test;
 
+import dataStructures.ShiftingTypeList;
 import dataStructures.Type;
 import dataStructures.RaliTrie;
 import junit.framework.TestCase;
@@ -42,5 +43,23 @@ public class RaliTrieTest extends TestCase {
         Type n = t.getEstimate(type);
 
         System.out.println(n.toString());
+    }
+
+    public void testMultipleAddGet() throws Exception {
+        RaliTrie trie = new RaliTrie(6);
+        ShiftingTypeList list = new ShiftingTypeList(5);
+
+        for(int i = 0 ; i < 5 ; i++) {
+            list.add(Type.PAPER);
+            list.add(Type.PAPER);
+            list.add(Type.PAPER);
+            list.add(Type.PAPER);
+
+            trie.add(list.toTypeList());
+
+            Type t = trie.getEstimate(list.toTypeList());
+            System.out.println(t);
+        }
+
     }
 }

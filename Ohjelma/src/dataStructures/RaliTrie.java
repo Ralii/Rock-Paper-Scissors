@@ -2,6 +2,8 @@ package dataStructures;
 
 import exeption.ListFullExeption;
 
+import java.util.Random;
+
 /**
  * Custom Trie that follows the basic structure of a Trie but has distinct methods of it's own.
  */
@@ -114,7 +116,7 @@ public class RaliTrie {
      * @throws ListFullExeption throws exeption if the fixed size list is full.
      */
     private FixedNodeList getRec(Type[] arr, int index, RaliTrieNode node, FixedNodeList list, Boolean firstPass) throws ListFullExeption {
-        if (index == arr.length - 2 && arr[index].equals(node.getValue())) {
+        if (index == arr.length - 3 && arr[index].equals(node.getValue())) {
             list.add(node.getNodes()[0]);
             list.add(node.getNodes()[1]);
             list.add(node.getNodes()[2]);
@@ -142,15 +144,24 @@ public class RaliTrie {
      */
     private Type findBiggest(FixedNodeList l) {
         if (l.get(0).getAmmount() > l.get(1).getAmmount() && l.get(0).getAmmount() > l.get(2).getAmmount()) {
-            return l.get(0).getValue();
+            return l.get(0).getValue().losesTo;
         }
         if (l.get(1).getAmmount() > l.get(0).getAmmount() && l.get(1).getAmmount() > l.get(2).getAmmount()) {
-            return l.get(1).getValue();
+            return l.get(1).getValue().losesTo;
         }
         if (l.get(2).getAmmount() > l.get(1).getAmmount() && l.get(2).getAmmount() > l.get(0).getAmmount()) {
-            return l.get(2).getValue();
+            return l.get(2).getValue().losesTo;
         }
-        return l.get(0).getValue();
+        return randomize();
+    }
+
+    private Type randomize(){
+        Random r = new Random();
+        int a = r.nextInt(3);
+        if(a == 0) { return Type.PAPER; }
+        if(a == 1) { return Type.ROCK; }
+        if(a == 2) { return Type.SCISSORS; }
+        return null;
     }
 }
 
