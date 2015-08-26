@@ -24,10 +24,15 @@ public class App {
      * Method for starting the game. Includes the event loop.
      * @throws InterruptedException Throws exeption if thread.sleep is interrupted
      */
-    public void startGame() throws InterruptedException {
+    public void startGame(){
         while(true) {
             System.out.println("Welcome to the game of life! Rock-Paper-Scissors");
-            Thread.sleep(1000);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println("Something went wrong");
+                System.exit(0);
+            }
 
             System.out.println("Make your choice!");
             System.out.println("R = Rock P = Paper S = Scissors");
@@ -52,7 +57,12 @@ public class App {
                     break;
                 default:
                     System.out.println("Incorrect answer, please try again.");
-                    Thread.sleep(500);
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        System.out.println("Something went wrong");
+                        System.exit(0);
+                     }
             }
         }
     }
@@ -62,9 +72,14 @@ public class App {
      * @return Wether the user chose to quit the program.
      * @throws InterruptedException If thread.sleep is interrupted.
      */
-    private Boolean quit() throws InterruptedException {
+    private Boolean quit() {
         while (true) {
-        Thread.sleep(500);
+        try {
+            Thread.sleep(500);
+            } catch (InterruptedException e) {
+                System.out.println("Something went wrong");
+                System.exit(0);
+            }
         System.out.println("Would you like to play again? " + "Y = YES " + "N = NO");
         String choice = in.nextLine().toUpperCase();
 

@@ -21,45 +21,29 @@ public class RaliTrieTest extends TestCase {
     }
 
     public void testGet() throws Exception {
-        RaliTrie t = new RaliTrie(5);
-        Type[] type = new Type[4];
+        RaliTrie t = new RaliTrie(6);
+        Type[] type = new Type[5];
 
         for(int i = 0 ; i < type.length ; i++) {
             type[i] = Type.PAPER;
         }
         Type n = t.getEstimate(type);
+        System.out.println(n);
     }
 
     public void testAddAndGet() throws Exception {
-        RaliTrie t = new RaliTrie(5);
-        Type[] type = new Type[4];
+        RaliTrie t = new RaliTrie(6);
+        Type[] type = new Type[5];
 
         for(int i = 0 ; i < type.length ; i ++) {
             type[i] = Type.PAPER;
         }
 
         t.add(type);
+        t.add(type);
+        t.add(type);
 
-        Type n = t.getEstimate(type);
-
-        System.out.println(n.toString());
+        assertEquals(Type.SCISSORS, t.getEstimate(type));
     }
 
-    public void testMultipleAddGet() throws Exception {
-        RaliTrie trie = new RaliTrie(6);
-        ShiftingTypeList list = new ShiftingTypeList(5);
-
-        for(int i = 0 ; i < 5 ; i++) {
-            list.add(Type.PAPER);
-            list.add(Type.PAPER);
-            list.add(Type.PAPER);
-            list.add(Type.PAPER);
-
-            trie.add(list.toTypeList());
-
-            Type t = trie.getEstimate(list.toTypeList());
-            System.out.println(t);
-        }
-
-    }
 }

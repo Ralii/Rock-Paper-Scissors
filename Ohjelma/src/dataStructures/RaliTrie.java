@@ -2,12 +2,13 @@ package dataStructures;
 
 import exeption.ListFullExeption;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**
  * Custom Trie that follows the basic structure of a Trie but has distinct methods of it's own.
  */
-public class RaliTrie {
+public class RaliTrie implements Serializable {
     RaliTrieNode first;
 
     public RaliTrie(int height) {

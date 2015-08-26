@@ -7,6 +7,9 @@ import dataStructures.Result;
 import dataStructures.ShiftingTypeList;
 import exeption.ListFullExeption;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Random;
 
 /**
@@ -54,11 +57,26 @@ public class Ai {
      * Deciding a random result for the game.
      * @return returns a RESULT. The outcome of the game.
      */
-    Result giveRandom(){
+    private Result giveRandom(){
         int a = r.nextInt(3);
         if(a == 0) { return Result.PLAYERWINS; }
         if(a == 1) { return Result.TIE; }
         if(a == 2) { return Result.AIWINS; }
         return Result.TIE;
+    }
+
+    public void quitGame(){
+        try
+        {
+            FileOutputStream fileOut =
+                new FileOutputStream("/tmp/employee.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(trie);
+            out.close();
+            fileOut.close();
+            System.out.printf("Serialized data is saved in /tmp/employee.ser");
+        }catch(IOException i) {
+        i.printStackTrace();
+        }
     }
 }
