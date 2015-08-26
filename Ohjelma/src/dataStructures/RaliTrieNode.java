@@ -1,9 +1,11 @@
 package dataStructures;
 
+import java.io.Serializable;
+
 /**
  * Trie node used with RaliTrie. Is a single element node of the RaliTrie
  */
-public class RaliTrieNode {
+public class RaliTrieNode implements Serializable {
     public boolean isLeaf;
     public RaliTrieNode[] nodes;
     private final Type value;

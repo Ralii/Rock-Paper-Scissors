@@ -13,11 +13,15 @@ public class App {
     Scanner in;
     Responses responses;
     Ai ai;
+    int[] scoreBoard;
 
     public App(){
         this.in = new Scanner(System.in);
         this.responses = new Responses();
         this.ai = new Ai();
+        this.scoreBoard = new int[2];
+        scoreBoard[0] = 0;
+        scoreBoard[1] = 0;
     }
 
     /**
@@ -88,6 +92,7 @@ public class App {
                     return false;
                 case "N":
                     System.out.println("I'm forever alone!");
+                    ai.quitGame();
                     System.exit(1);
                     return true;
 
@@ -105,10 +110,19 @@ public class App {
         Result result = ai.result(t);
         switch(result) {
             case PLAYERWINS: System.out.println("Player wins!");
+
+                scoreBoard[0]++;
+                System.out.println("Score: Player " + scoreBoard[0] + " Ai: " + scoreBoard[1]);
+
                 break;
             case AIWINS: System.out.println("AI wins!");
+
+                scoreBoard[1]++;
+                System.out.println("Score: Player " + scoreBoard[0] + " Ai: " + scoreBoard[1]);
+
                 break;
             case TIE: System.out.println("It's a tie!");
+                System.out.println("Score: Player " + scoreBoard[0] + " Ai: " + scoreBoard[1]);
                 break;
         }
     }

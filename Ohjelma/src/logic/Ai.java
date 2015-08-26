@@ -7,9 +7,7 @@ import dataStructures.Result;
 import dataStructures.ShiftingTypeList;
 import exeption.ListFullExeption;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.Random;
 
 /**
@@ -20,10 +18,9 @@ public class Ai {
     private RaliTrie trie;
     Random r = new Random();
 
-
     public Ai(){
         this.list = new ShiftingTypeList(5);
-        this.trie = new RaliTrie(6);
+        this.trie = readSerialized();
     }
 
     /**
@@ -69,14 +66,35 @@ public class Ai {
         try
         {
             FileOutputStream fileOut =
-                new FileOutputStream("/tmp/employee.ser");
+                new FileOutputStream("trie.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(trie);
             out.close();
             fileOut.close();
-            System.out.printf("Serialized data is saved in /tmp/employee.ser");
         }catch(IOException i) {
         i.printStackTrace();
         }
+    }
+
+    private RaliTrie readSerialized(){
+        RaliTrie t = null;
+        try
+        {
+            FileInputStream fileIn = new FileInputStream("trie.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+             t = (RaliTrie) in.readObject();
+            in.close();
+            fileIn.close();
+        }catch(IOException i)
+        {
+            i.printStackTrace();
+
+        }catch(ClassNotFoundException c)
+        {
+            System.out.println("Employee class not found");
+            c.printStackTrace();
+
+        }
+        return t;
     }
 }

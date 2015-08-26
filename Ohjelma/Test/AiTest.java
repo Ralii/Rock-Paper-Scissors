@@ -1,14 +1,11 @@
-package Test;
-
-import com.sun.tools.jdeps.Analyzer;
+import dataStructures.Result;
 import dataStructures.Type;
-import javafx.scene.image.PixelFormat;
 import junit.framework.TestCase;
 import logic.Ai;
 
 public class AiTest extends TestCase {
 
-    public void testResult() throws Exception {
+    public void testSimplePattern1() throws Exception {
         Ai ai = new Ai();
         ai.result(Type.PAPER);
         ai.result(Type.PAPER);
@@ -16,7 +13,11 @@ public class AiTest extends TestCase {
         ai.result(Type.PAPER);
         ai.result(Type.PAPER);
 
-        assertEquals(Type.SCISSORS, ai.result(Type.PAPER));
+        assertEquals(Result.AIWINS, ai.result(Type.PAPER));
+    }
+
+    public void testSimplePattern2() throws Exception {
+
     }
 
 }
