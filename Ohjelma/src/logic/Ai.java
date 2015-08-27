@@ -1,6 +1,5 @@
 package logic;
 
-
 import dataStructures.Type;
 import dataStructures.RaliTrie;
 import dataStructures.Result;
@@ -91,7 +90,7 @@ public class Ai {
 
         }catch(ClassNotFoundException c)
         {
-            System.out.println("Employee class not found");
+            System.out.println("Trie class not found");
             c.printStackTrace();
 
         }

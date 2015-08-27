@@ -110,13 +110,13 @@ public class App {
         Result result = ai.result(t);
         switch(result) {
             case PLAYERWINS: System.out.println("Player wins!");
-
+                System.out.println(responses.getRandomLoose());
                 scoreBoard[0]++;
                 System.out.println("Score: Player " + scoreBoard[0] + " Ai: " + scoreBoard[1]);
 
                 break;
             case AIWINS: System.out.println("AI wins!");
-
+                System.out.println(responses.getRandomWin());
                 scoreBoard[1]++;
                 System.out.println("Score: Player " + scoreBoard[0] + " Ai: " + scoreBoard[1]);
 

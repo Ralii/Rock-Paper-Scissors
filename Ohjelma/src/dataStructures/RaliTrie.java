@@ -97,13 +97,13 @@ public class RaliTrie implements Serializable {
         switch (arr[0]) {
             case PAPER:
                 FixedNodeList a = getRec(arr, 0, first.getNodes()[0], new FixedNodeList(3), firstPass);
-                return findBiggest(a);
+                return findBiggest(a).losesTo;
             case ROCK:
                 FixedNodeList b = getRec(arr, 0, first.getNodes()[1], new FixedNodeList(3), firstPass);
-                return findBiggest(b);
+                return findBiggest(b).losesTo;
             case SCISSORS:
                 FixedNodeList c = getRec(arr, 0, first.getNodes()[2], new FixedNodeList(3), firstPass);
-                return findBiggest(c);
+                return findBiggest(c).losesTo;
         }
         return null;
     }
@@ -145,13 +145,13 @@ public class RaliTrie implements Serializable {
      */
     private Type findBiggest(FixedNodeList l) {
         if (l.get(0).getAmmount() > l.get(1).getAmmount() && l.get(0).getAmmount() > l.get(2).getAmmount()) {
-            return l.get(0).getValue().losesTo;
+            return l.get(0).getValue();
         }
         if (l.get(1).getAmmount() > l.get(0).getAmmount() && l.get(1).getAmmount() > l.get(2).getAmmount()) {
-            return l.get(1).getValue().losesTo;
+            return l.get(1).getValue();
         }
         if (l.get(2).getAmmount() > l.get(1).getAmmount() && l.get(2).getAmmount() > l.get(0).getAmmount()) {
-            return l.get(2).getValue().losesTo;
+            return l.get(2).getValue();
         }
         return randomize();
     }
@@ -165,5 +165,3 @@ public class RaliTrie implements Serializable {
         return null;
     }
 }
-
-
