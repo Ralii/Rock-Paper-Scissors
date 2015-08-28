@@ -19,7 +19,6 @@ public class Ai {
 
     public Ai(){
         this.list = readSerializedTypeList();
-        //this.trie = readSerialized();
         this.trie = readSerializedTrie();
     }
 

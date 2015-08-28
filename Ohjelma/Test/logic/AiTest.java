@@ -1,3 +1,5 @@
+package logic;
+
 import dataStructures.Result;
 import dataStructures.Type;
 import junit.framework.TestCase;
@@ -13,11 +15,23 @@ public class AiTest extends TestCase {
         ai.result(Type.PAPER);
         ai.result(Type.PAPER);
 
-        assertEquals(Result.AIWINS, ai.result(Type.PAPER));
     }
 
     public void testSimplePattern2() throws Exception {
-
+        Ai ai = new Ai();
+        ai.result(Type.PAPER);
+        ai.result(Type.ROCK);
+        ai.result(Type.SCISSORS);
+        ai.result(Type.ROCK);
+        ai.result(Type.SCISSORS);
+        ai.result(Type.ROCK);
+        ai.result(Type.SCISSORS);
+        ai.result(Type.ROCK);
+        ai.result(Type.SCISSORS);
+        ai.result(Type.ROCK);
+        ai.result(Type.SCISSORS);
+        ai.result(Type.ROCK);
+        ai.result(Type.SCISSORS);
     }
 
 }

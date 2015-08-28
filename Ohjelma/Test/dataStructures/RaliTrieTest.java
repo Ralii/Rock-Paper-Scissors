@@ -1,4 +1,4 @@
-
+package dataStructures;
 
 import dataStructures.ShiftingTypeList;
 import dataStructures.Type;
