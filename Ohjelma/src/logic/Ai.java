@@ -18,8 +18,9 @@ public class Ai {
     Random r = new Random();
 
     public Ai(){
-        this.list = new ShiftingTypeList(5);
-        this.trie = readSerialized();
+        this.list = readSerializedTypeList();
+        //this.trie = readSerialized();
+        this.trie = readSerializedTrie();
     }
 
     /**
@@ -28,16 +29,20 @@ public class Ai {
      * @return returns the RESULT of the game.
      */
     public Result result(Type t) {
-        list.add(t);
-        if(list.length() < 5) {
+
+        if(list.length() < 10) {
             return giveRandom();
         }
-        trie.add(list.toTypeList());
+
 
         Type playerAnswer = t;
         Type aiAnswer;
         try {
             aiAnswer = trie.getEstimate(list.toTypeList());
+            list.add(t);
+            list.add(aiAnswer);
+            trie.add(list.toTypeList());
+
         } catch (ListFullExeption listFullExeption) {
             System.out.println("Unexpected exeption.");
             System.exit(0);
@@ -73,9 +78,19 @@ public class Ai {
         }catch(IOException i) {
         i.printStackTrace();
         }
+        try {
+            FileOutputStream fileOut =
+                    new FileOutputStream("typelist.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(list);
+            out.close();
+            fileOut.close();
+        }catch(IOException i) {
+            i.printStackTrace();
+        }
     }
 
-    private RaliTrie readSerialized(){
+    private RaliTrie readSerializedTrie(){
         RaliTrie t = null;
         try
         {
@@ -91,6 +106,27 @@ public class Ai {
         }catch(ClassNotFoundException c)
         {
             System.out.println("Trie class not found");
+            c.printStackTrace();
+
+        }
+        return t;
+    }
+    private ShiftingTypeList readSerializedTypeList(){
+        ShiftingTypeList t = null;
+        try
+        {
+            FileInputStream fileIn = new FileInputStream("typelist.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            t = (ShiftingTypeList) in.readObject();
+            in.close();
+            fileIn.close();
+        }catch(IOException i)
+        {
+            i.printStackTrace();
+
+        }catch(ClassNotFoundException c)
+        {
+            System.out.println("ShiftingTypeList class not found");
             c.printStackTrace();
 
         }
