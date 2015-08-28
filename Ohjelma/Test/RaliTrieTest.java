@@ -1,4 +1,4 @@
-package Test;
+
 
 import dataStructures.ShiftingTypeList;
 import dataStructures.Type;
@@ -12,8 +12,8 @@ public class RaliTrieTest extends TestCase {
     }
 
     public void testAdd() throws Exception {
-        RaliTrie t = new RaliTrie(5);
-        Type[] type = new Type[4];
+        RaliTrie t = new RaliTrie(6);
+        Type[] type = new Type[5];
         for(int i = 0 ; i < type.length ; i++) {
             type[i] = Type.PAPER;
         }
