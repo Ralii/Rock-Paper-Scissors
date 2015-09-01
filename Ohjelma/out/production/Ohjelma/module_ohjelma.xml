@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_ohjelma" default="compile.module.ohjelma">
+  <dirname property="module.ohjelma.basedir" file="${ant.file.module_ohjelma}"/>
+  
+  <property name="module.jdk.home.ohjelma" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.ohjelma" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.ohjelma" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.ohjelma" value="-encoding UTF-8 -source 8 ${compiler.args}"/>
+  
+  <property name="ohjelma.output.dir" value="${module.ohjelma.basedir}/out/production/Ohjelma"/>
+  <property name="ohjelma.testoutput.dir" value="${module.ohjelma.basedir}/out/test/Ohjelma"/>
+  
+  <path id="ohjelma.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="ohjelma.module.production.classpath">
+    <path refid="${module.jdk.classpath.ohjelma}"/>
+    <pathelement location="${basedir}/junit-4.7.jar"/>
+  </path>
+  
+  <path id="ohjelma.runtime.production.module.classpath">
+    <pathelement location="${ohjelma.output.dir}"/>
+    <pathelement location="${basedir}/junit-4.7.jar"/>
+  </path>
+  
+  <path id="ohjelma.module.classpath">
+    <path refid="${module.jdk.classpath.ohjelma}"/>
+    <pathelement location="${ohjelma.output.dir}"/>
+    <pathelement location="${basedir}/junit-4.7.jar"/>
+  </path>
+  
+  <path id="ohjelma.runtime.module.classpath">
+    <pathelement location="${ohjelma.testoutput.dir}"/>
+    <pathelement location="${ohjelma.output.dir}"/>
+    <pathelement location="${basedir}/junit-4.7.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.ohjelma">
+    <patternset refid="ignored.files"/>
+    <exclude name="out/**"/>
+    <exclude name="out/test/**"/>
+    <exclude name="out/test/Ohjelma/**"/>
+    <exclude name="out/test/Ohjelma/logic/**"/>
+    <exclude name="out/test/Ohjelma/dataStructures/**"/>
+    <exclude name="out/production/**"/>
+    <exclude name="out/production/Ohjelma/**"/>
+    <exclude name="out/production/Ohjelma/logic/**"/>
+    <exclude name="out/production/Ohjelma/dataStructures/**"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.ohjelma">
+    <patternset refid="excluded.from.module.ohjelma"/>
+  </patternset>
+  
+  <path id="ohjelma.module.sourcepath">
+    <dirset dir="${module.ohjelma.basedir}/../../Rock-Paper-Scissors">
+      <include name="Ohjelma/src"/>
+      <include name="Ohjelma"/>
+    </dirset>
+  </path>
+  
+  <path id="ohjelma.module.test.sourcepath">
+    <dirset dir="${module.ohjelma.basedir}/../../Rock-Paper-Scissors">
+      <include name="Ohjelma/Test"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.ohjelma" depends="compile.module.ohjelma.production,compile.module.ohjelma.tests" description="Compile module Ohjelma"/>
+  
+  <target name="compile.module.ohjelma.production" depends="register.custom.compilers" description="Compile module Ohjelma; production classes">
+    <mkdir dir="${ohjelma.output.dir}"/>
+    <javac2 destdir="${ohjelma.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.ohjelma}/javac">
+      <compilerarg line="${compiler.args.ohjelma}"/>
+      <bootclasspath refid="ohjelma.module.bootclasspath"/>
+      <classpath refid="ohjelma.module.production.classpath"/>
+      <src refid="ohjelma.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.ohjelma"/>
+    </javac2>
+    
+    <copy todir="${ohjelma.output.dir}">
+      <fileset dir="${module.ohjelma.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.ohjelma.basedir}">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.ohjelma.tests" depends="register.custom.compilers,compile.module.ohjelma.production" description="compile module Ohjelma; test classes" unless="skip.tests">
+    <mkdir dir="${ohjelma.testoutput.dir}"/>
+    <javac2 destdir="${ohjelma.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.ohjelma}/javac">
+      <compilerarg line="${compiler.args.ohjelma}"/>
+      <bootclasspath refid="ohjelma.module.bootclasspath"/>
+      <classpath refid="ohjelma.module.classpath"/>
+      <src refid="ohjelma.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.ohjelma"/>
+    </javac2>
+    
+    <copy todir="${ohjelma.testoutput.dir}">
+      <fileset dir="${module.ohjelma.basedir}/Test">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.ohjelma" description="cleanup module">
+    <delete dir="${ohjelma.output.dir}"/>
+    <delete dir="${ohjelma.testoutput.dir}"/>
+  </target>
+</project>

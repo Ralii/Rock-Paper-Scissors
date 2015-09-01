@@ -19,7 +19,7 @@ public class RaliTrieNode implements Serializable {
 
     /**
      * Add nodes to RaliTrieNode
-     * @param newNodes array of RaliTrieNodes.
+     * @param newNodes array of RaliTrieNodes.a
      */
     public void addNodes(RaliTrieNode[] newNodes){
         isLeaf = false;

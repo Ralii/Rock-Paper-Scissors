@@ -65,6 +65,9 @@ public class Ai {
         return Result.TIE;
     }
 
+    /**
+     * Method for quitting the game and exiting the program.
+     */
     public void quitGame(){
         try
         {
@@ -89,6 +92,10 @@ public class Ai {
         }
     }
 
+    /**
+     * Method for reading the serialied RaliTrie structure.
+     * @return returns the serialized RaliTrie.
+     */
     private RaliTrie readSerializedTrie(){
         RaliTrie t = null;
         try
@@ -110,6 +117,10 @@ public class Ai {
         }
         return t;
     }
+    /**
+     * Method for reading the serialied ShiftingTypeList structure.
+     * @return returns the serialized ShiftingTypeList.
+     */
     private ShiftingTypeList readSerializedTypeList(){
         ShiftingTypeList t = null;
         try

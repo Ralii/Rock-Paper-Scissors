@@ -34,4 +34,9 @@ public class AiTest extends TestCase {
         ai.result(Type.SCISSORS);
     }
 
+    public void testQuitGame() throws Exception {
+        Ai ai = new Ai();
+        ai.quitGame();
+    }
+
 }

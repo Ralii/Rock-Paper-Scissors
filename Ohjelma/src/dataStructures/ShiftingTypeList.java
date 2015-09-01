@@ -6,7 +6,8 @@ import java.io.Serializable;
  * List that shifts elements to the left when it gets full
  */
 public class ShiftingTypeList implements Serializable {
-    Type[] list;
+    private Type[] list;
+
     public ShiftingTypeList(int size) {
         this.list = new Type[size];
     }

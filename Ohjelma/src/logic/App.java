@@ -10,10 +10,10 @@ import java.util.Scanner;
  * Main class of the game. Handles the text user-interface and delegates methods to ai component.
  */
 public class App {
-    Scanner in;
-    Responses responses;
-    Ai ai;
-    int[] scoreBoard;
+    private final Scanner in;
+    private final Responses responses;
+    private final Ai ai;
+    private int[] scoreBoard;
 
     public App(){
         this.in = new Scanner(System.in);
@@ -26,7 +26,6 @@ public class App {
 
     /**
      * Method for starting the game. Includes the event loop.
-     * @throws InterruptedException Throws exeption if thread.sleep is interrupted
      */
     public void startGame(){
         while(true) {
@@ -74,7 +73,6 @@ public class App {
     /**
      * Quitting the game and exiting the program if the user chooses so.
      * @return Wether the user chose to quit the program.
-     * @throws InterruptedException If thread.sleep is interrupted.
      */
     private Boolean quit() {
         while (true) {

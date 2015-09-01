@@ -1,5 +1,6 @@
 package dataStructures;
 
+import exeption.ListFullExeption;
 import junit.framework.TestCase;
 
 public class FixedNodeListTest extends TestCase {
@@ -22,5 +23,16 @@ public class FixedNodeListTest extends TestCase {
         l.add(new RaliTrieNode(Type.PAPER));
 
         assertEquals(3, l.length());
+    }
+
+    public void testFull() throws Exception {
+        try {
+            FixedNodeList l = new FixedNodeList(2);
+            l.add(new RaliTrieNode(Type.PAPER));
+            l.add(new RaliTrieNode(Type.PAPER));
+            l.add(new RaliTrieNode(Type.PAPER));
+        } catch(ListFullExeption e) {
+
+        }
     }
 }
