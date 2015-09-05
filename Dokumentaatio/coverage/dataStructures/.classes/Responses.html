@@ -1,0 +1,140 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Responses</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">dataStructures</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Responses (dataStructures)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Responses</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (20/ 20)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package dataStructures;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.Random;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;/**
+<i>6</i>&nbsp; * Responses for winning and loosing the game.
+<i>7</i>&nbsp; */
+<i>8</i>&nbsp;public class Responses {
+<i>9</i>&nbsp;    private final String[] winning;
+<i>10</i>&nbsp;    private final String[] losing;
+<i>11</i>&nbsp;    private final Random random;
+<i>12</i>&nbsp;
+<b class="fc"><i>13</i>&nbsp;    public Responses(){</b>
+<b class="fc"><i>14</i>&nbsp;        this.winning = new String[5];</b>
+<b class="fc"><i>15</i>&nbsp;        this.losing = new String[5];</b>
+<b class="fc"><i>16</i>&nbsp;        this.random = new Random();</b>
+<b class="fc"><i>17</i>&nbsp;        init();</b>
+<b class="fc"><i>18</i>&nbsp;    }</b>
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    /**
+<i>21</i>&nbsp;     * Getter for the random win quote.
+<i>22</i>&nbsp;     * @return Returns random win quote.
+<i>23</i>&nbsp;     */
+<b class="fc"><i>24</i>&nbsp;    public String getRandomWin(){ return winning[getRandom(4)]; }</b>
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    /**
+<i>27</i>&nbsp;     * Getter for the random loose quote.
+<i>28</i>&nbsp;     * @return Returns random loose quote.
+<i>29</i>&nbsp;     */
+<b class="fc"><i>30</i>&nbsp;    public String getRandomLoose(){ return losing[getRandom(4)]; }</b>
+<i>31</i>&nbsp;
+<i>32</i>&nbsp;    /**
+<i>33</i>&nbsp;     * Initializing the data structures inside of the Class.
+<i>34</i>&nbsp;     */
+<i>35</i>&nbsp;    private void init(){
+<b class="fc"><i>36</i>&nbsp;        winning[0] = &quot;Victory has a thousand fathers, but defeat is an orphan. MUAHAHAH&quot;;</b>
+<b class="fc"><i>37</i>&nbsp;        winning[1] = &quot;Victory belongs to the most persevering.&quot;;</b>
+<b class="fc"><i>38</i>&nbsp;        winning[2] = &quot;Hävisit pelin!&quot;;</b>
+<b class="fc"><i>39</i>&nbsp;        winning[3] = &quot;FAIL!&quot;;</b>
+<b class="fc"><i>40</i>&nbsp;        winning[4] = &quot;Finish him!&quot;;</b>
+<i>41</i>&nbsp;
+<b class="fc"><i>42</i>&nbsp;        losing[0] = &quot;We always learn more from the losing than the winning.&quot;;</b>
+<b class="fc"><i>43</i>&nbsp;        losing[1] = &quot;The difference between winning and losing is always a mental one.&quot;;</b>
+<b class="fc"><i>44</i>&nbsp;        losing[2] = &quot;You’re always going to survive the pain of loss. I can live with that confidence inside of me.&quot;;</b>
+<b class="fc"><i>45</i>&nbsp;        losing[3] = &quot;The mark of a great player is in his ability to come back. The great champions have all come back from defeat.&quot;;</b>
+<b class="fc"><i>46</i>&nbsp;        losing[4] = &quot;If you don’t invest very much, then defeat doesn’t hurt very much and winning is not very exciting.&quot;;</b>
+<b class="fc"><i>47</i>&nbsp;    }</b>
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;    /**
+<i>50</i>&nbsp;     * Getting the random index for the quote.
+<i>51</i>&nbsp;     * @param cap Is the maximum limit of the index.
+<i>52</i>&nbsp;     * @return Returns the index for the quote.
+<i>53</i>&nbsp;     */
+<i>54</i>&nbsp;    private int getRandom(int cap){
+<b class="fc"><i>55</i>&nbsp;        return random.nextInt(cap);</b>
+<i>56</i>&nbsp;    }
+<i>57</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2015-09-05 13:50</div>
+</div>
+</body>
+</html>

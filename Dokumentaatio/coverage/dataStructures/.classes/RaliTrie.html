@@ -1,0 +1,276 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: RaliTrie</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">dataStructures</a> ]
+</div>
+
+<h1>Coverage Summary for Class: RaliTrie (dataStructures)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">RaliTrie</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/ 8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94,3%
+  </span>
+  <span class="absValue">
+    (66/ 70)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">RaliTrie$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/ 9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94,4%
+  </span>
+  <span class="absValue">
+    (67/ 71)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package dataStructures;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import exeption.ListFullExeption;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.io.Serializable;
+<i>6</i>&nbsp;import java.util.Random;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;/**
+<i>9</i>&nbsp; * Custom Trie that follows the basic structure of a Trie but has distinct methods of it&#39;s own.
+<i>10</i>&nbsp; */
+<i>11</i>&nbsp;public class RaliTrie implements Serializable {
+<i>12</i>&nbsp;    private final RaliTrieNode first;
+<i>13</i>&nbsp;
+<b class="fc"><i>14</i>&nbsp;    public RaliTrie(int height) {</b>
+<i>15</i>&nbsp;
+<b class="fc"><i>16</i>&nbsp;        this.first = new RaliTrieNode(Type.PAPER);</b>
+<b class="fc"><i>17</i>&nbsp;        init(height, this.first);</b>
+<b class="fc"><i>18</i>&nbsp;    }</b>
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    /**
+<i>21</i>&nbsp;     * Initializing the RaliTrie and it&#39;s values.
+<i>22</i>&nbsp;     * @param height Defines the height of the RaliTrie and is -1 height because of the unused rootnode.
+<i>23</i>&nbsp;     * @param node Rootnode of the RaliTrie.
+<i>24</i>&nbsp;     */
+<i>25</i>&nbsp;    private void init(int height, RaliTrieNode node) {
+<b class="fc"><i>26</i>&nbsp;        if (height == 0) {</b>
+<b class="fc"><i>27</i>&nbsp;            return;</b>
+<i>28</i>&nbsp;        }
+<i>29</i>&nbsp;
+<b class="fc"><i>30</i>&nbsp;        RaliTrieNode[] nodes = new RaliTrieNode[3];</b>
+<b class="fc"><i>31</i>&nbsp;        nodes[0] = new RaliTrieNode(Type.PAPER);</b>
+<b class="fc"><i>32</i>&nbsp;        nodes[1] = new RaliTrieNode(Type.ROCK);</b>
+<b class="fc"><i>33</i>&nbsp;        nodes[2] = new RaliTrieNode(Type.SCISSORS);</b>
+<i>34</i>&nbsp;
+<b class="fc"><i>35</i>&nbsp;        node.addNodes(nodes);</b>
+<b class="fc"><i>36</i>&nbsp;        height--;</b>
+<i>37</i>&nbsp;
+<b class="fc"><i>38</i>&nbsp;        for (int i = 0; i &lt; nodes.length; i++) {</b>
+<b class="fc"><i>39</i>&nbsp;            init(height, nodes[i]);</b>
+<i>40</i>&nbsp;        }
+<b class="fc"><i>41</i>&nbsp;    }</b>
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    /**
+<i>44</i>&nbsp;     * Add values to the RaliTrie
+<i>45</i>&nbsp;     * @param arr Requires an array of Types.
+<i>46</i>&nbsp;     */
+<i>47</i>&nbsp;    public void add(Type[] arr) {
+<b class="fc"><i>48</i>&nbsp;        Boolean firstPass = true;</b>
+<b class="fc"><i>49</i>&nbsp;        switch (arr[0]) {</b>
+<i>50</i>&nbsp;            case PAPER:
+<b class="fc"><i>51</i>&nbsp;                addRec(arr, 0, first.getNodes()[0], firstPass);</b>
+<i>52</i>&nbsp;            case ROCK:
+<b class="fc"><i>53</i>&nbsp;                addRec(arr, 0, first.getNodes()[1], firstPass);</b>
+<i>54</i>&nbsp;            case SCISSORS:
+<b class="fc"><i>55</i>&nbsp;                addRec(arr, 0, first.getNodes()[2], firstPass);</b>
+<i>56</i>&nbsp;        }
+<b class="fc"><i>57</i>&nbsp;    }</b>
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;    /**
+<i>60</i>&nbsp;     * Helper method for add. Handles the recursive insert part.
+<i>61</i>&nbsp;     * @param arr Array of Types.
+<i>62</i>&nbsp;     * @param index Index of array. Required for recursion to know the right value.
+<i>63</i>&nbsp;     * @param node Current node for the recursive method.
+<i>64</i>&nbsp;     * @param firstPass Indication whether the index should be raised at the first pass.
+<i>65</i>&nbsp;     */
+<i>66</i>&nbsp;    private void addRec(Type[] arr, int index, RaliTrieNode node, Boolean firstPass) {
+<b class="fc"><i>67</i>&nbsp;        if (arr[index].equals(node.getValue())) {</b>
+<b class="fc"><i>68</i>&nbsp;            if (!firstPass) {</b>
+<b class="fc"><i>69</i>&nbsp;                index++;</b>
+<i>70</i>&nbsp;            }
+<b class="fc"><i>71</i>&nbsp;            if (index == arr.length - 1 || arr[index] == null) {</b>
+<b class="fc"><i>72</i>&nbsp;                node.setAmmount(node.getAmmount() + 1);</b>
+<i>73</i>&nbsp;            } else {
+<i>74</i>&nbsp;
+<b class="fc"><i>75</i>&nbsp;                firstPass = false;</b>
+<b class="fc"><i>76</i>&nbsp;                if (arr[index].equals(node.getNodes()[0].getValue())) {</b>
+<b class="fc"><i>77</i>&nbsp;                    addRec(arr, index, node.getNodes()[0], firstPass);</b>
+<i>78</i>&nbsp;                }
+<b class="fc"><i>79</i>&nbsp;                if (arr[index].equals(node.getNodes()[1].getValue())) {</b>
+<b class="fc"><i>80</i>&nbsp;                    addRec(arr, index, node.getNodes()[1], firstPass);</b>
+<i>81</i>&nbsp;                }
+<b class="fc"><i>82</i>&nbsp;                if (arr[index].equals(node.getNodes()[2].getValue())) {</b>
+<b class="fc"><i>83</i>&nbsp;                    addRec(arr, index, node.getNodes()[2], firstPass);</b>
+<i>84</i>&nbsp;                }
+<i>85</i>&nbsp;            }
+<i>86</i>&nbsp;        }
+<b class="fc"><i>87</i>&nbsp;    }</b>
+<i>88</i>&nbsp;
+<i>89</i>&nbsp;    /**
+<i>90</i>&nbsp;     * Get estimation of the most used Type in continuation of the combination.
+<i>91</i>&nbsp;     * @param arr Array of Types.
+<i>92</i>&nbsp;     * @return The Types in the last node.
+<i>93</i>&nbsp;     * @throws ListFullExeption throws exeption if the fixed size list is full.
+<i>94</i>&nbsp;     */
+<i>95</i>&nbsp;    public Type getEstimate(Type[] arr) throws ListFullExeption {
+<b class="fc"><i>96</i>&nbsp;        Boolean firstPass = true;</b>
+<b class="fc"><i>97</i>&nbsp;        switch (arr[0]) {</b>
+<i>98</i>&nbsp;            case PAPER:
+<b class="fc"><i>99</i>&nbsp;                FixedNodeList a = getRec(arr, 0, first.getNodes()[0], new FixedNodeList(3), firstPass);</b>
+<b class="fc"><i>100</i>&nbsp;                return findBiggest(a).losesTo;</b>
+<i>101</i>&nbsp;            case ROCK:
+<b class="fc"><i>102</i>&nbsp;                FixedNodeList b = getRec(arr, 0, first.getNodes()[1], new FixedNodeList(3), firstPass);</b>
+<b class="fc"><i>103</i>&nbsp;                return findBiggest(b).losesTo;</b>
+<i>104</i>&nbsp;            case SCISSORS:
+<b class="fc"><i>105</i>&nbsp;                FixedNodeList c = getRec(arr, 0, first.getNodes()[2], new FixedNodeList(3), firstPass);</b>
+<b class="fc"><i>106</i>&nbsp;                return findBiggest(c).losesTo;</b>
+<i>107</i>&nbsp;        }
+<b class="nc"><i>108</i>&nbsp;        return null;</b>
+<i>109</i>&nbsp;    }
+<i>110</i>&nbsp;
+<i>111</i>&nbsp;    /**
+<i>112</i>&nbsp;     * Helper method for getEstimate. Handles the recursive insert part.
+<i>113</i>&nbsp;     * @param arr Array of Types.
+<i>114</i>&nbsp;     * @param index Index of array. Required for recursion to know the right value.
+<i>115</i>&nbsp;     * @param node Current node for the recursive method.
+<i>116</i>&nbsp;     * @param firstPass Indication whether the index should be raised at the first pass.
+<i>117</i>&nbsp;     * @throws ListFullExeption throws exeption if the fixed size list is full.
+<i>118</i>&nbsp;     */
+<i>119</i>&nbsp;    private FixedNodeList getRec(Type[] arr, int index, RaliTrieNode node, FixedNodeList list, Boolean firstPass) throws ListFullExeption {
+<b class="fc"><i>120</i>&nbsp;        if (index == arr.length - 3 &amp;&amp; arr[index].equals(node.getValue())) {</b>
+<b class="fc"><i>121</i>&nbsp;            list.add(node.getNodes()[0]);</b>
+<b class="fc"><i>122</i>&nbsp;            list.add(node.getNodes()[1]);</b>
+<b class="fc"><i>123</i>&nbsp;            list.add(node.getNodes()[2]);</b>
+<b class="fc"><i>124</i>&nbsp;            return list;</b>
+<i>125</i>&nbsp;        }
+<b class="fc"><i>126</i>&nbsp;        if (!firstPass) {</b>
+<b class="fc"><i>127</i>&nbsp;            index++;</b>
+<i>128</i>&nbsp;        }
+<b class="fc"><i>129</i>&nbsp;        firstPass = false;</b>
+<b class="fc"><i>130</i>&nbsp;        for (int i = 0; i &lt; node.getNodes().length; i++) {</b>
+<b class="fc"><i>131</i>&nbsp;            if (node.getNodes()[i]</b>
+<b class="fc"><i>132</i>&nbsp;                    .getValue()</b>
+<b class="fc"><i>133</i>&nbsp;                    .equals(arr[index])</b>
+<i>134</i>&nbsp;                    ) {
+<b class="fc"><i>135</i>&nbsp;                getRec(arr, index, node.getNodes()[i], list, firstPass);</b>
+<i>136</i>&nbsp;            }
+<i>137</i>&nbsp;        }
+<b class="fc"><i>138</i>&nbsp;        return list;</b>
+<i>139</i>&nbsp;    }
+<i>140</i>&nbsp;
+<i>141</i>&nbsp;    /**
+<i>142</i>&nbsp;     * Helper method for getEstimate. Used for comparing the return values.
+<i>143</i>&nbsp;     * @param l FixedNodeList that holds the node values from the recursive method.
+<i>144</i>&nbsp;     * @return returns the node which has the biggest value in FixedNodeList.
+<i>145</i>&nbsp;     */
+<i>146</i>&nbsp;    private Type findBiggest(FixedNodeList l) {
+<b class="fc"><i>147</i>&nbsp;        if (l.get(0).getAmmount() &gt; l.get(1).getAmmount() &amp;&amp; l.get(0).getAmmount() &gt; l.get(2).getAmmount()) {</b>
+<b class="fc"><i>148</i>&nbsp;            return l.get(0).getValue();</b>
+<i>149</i>&nbsp;        }
+<b class="fc"><i>150</i>&nbsp;        if (l.get(1).getAmmount() &gt; l.get(0).getAmmount() &amp;&amp; l.get(1).getAmmount() &gt; l.get(2).getAmmount()) {</b>
+<b class="fc"><i>151</i>&nbsp;            return l.get(1).getValue();</b>
+<i>152</i>&nbsp;        }
+<b class="fc"><i>153</i>&nbsp;        if (l.get(2).getAmmount() &gt; l.get(1).getAmmount() &amp;&amp; l.get(2).getAmmount() &gt; l.get(0).getAmmount()) {</b>
+<b class="fc"><i>154</i>&nbsp;            return l.get(2).getValue();</b>
+<i>155</i>&nbsp;        }
+<b class="fc"><i>156</i>&nbsp;        return randomize();</b>
+<i>157</i>&nbsp;    }
+<i>158</i>&nbsp;
+<i>159</i>&nbsp;    private Type randomize(){
+<b class="fc"><i>160</i>&nbsp;        Random r = new Random();</b>
+<b class="fc"><i>161</i>&nbsp;        int a = r.nextInt(3);</b>
+<b class="fc"><i>162</i>&nbsp;        if(a == 0) { return Type.PAPER; }</b>
+<b class="nc"><i>163</i>&nbsp;        if(a == 1) { return Type.ROCK; }</b>
+<b class="nc"><i>164</i>&nbsp;        if(a == 2) { return Type.SCISSORS; }</b>
+<b class="nc"><i>165</i>&nbsp;        return null;</b>
+<i>166</i>&nbsp;    }
+<i>167</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2015-09-05 13:50</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,152 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: RaliTrieNode</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">dataStructures</a> ]
+</div>
+
+<h1>Coverage Summary for Class: RaliTrieNode (dataStructures)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">RaliTrieNode</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    85,7%
+  </span>
+  <span class="absValue">
+    (6/ 7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92,9%
+  </span>
+  <span class="absValue">
+    (13/ 14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package dataStructures;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.io.Serializable;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;/**
+<i>6</i>&nbsp; * Trie node used with RaliTrie. Is a single element node of the RaliTrie
+<i>7</i>&nbsp; */
+<i>8</i>&nbsp;public class RaliTrieNode implements Serializable {
+<i>9</i>&nbsp;    public boolean isLeaf;
+<i>10</i>&nbsp;    public RaliTrieNode[] nodes;
+<i>11</i>&nbsp;    private final Type value;
+<i>12</i>&nbsp;    private int ammount;
+<i>13</i>&nbsp;
+<b class="fc"><i>14</i>&nbsp;    public RaliTrieNode(Type value){</b>
+<b class="fc"><i>15</i>&nbsp;        this.isLeaf = true;</b>
+<b class="fc"><i>16</i>&nbsp;        this.value = value;</b>
+<b class="fc"><i>17</i>&nbsp;        this.ammount = 0;</b>
+<b class="fc"><i>18</i>&nbsp;    }</b>
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    /**
+<i>21</i>&nbsp;     * Add nodes to RaliTrieNode
+<i>22</i>&nbsp;     * @param newNodes array of RaliTrieNodes.a
+<i>23</i>&nbsp;     */
+<i>24</i>&nbsp;    public void addNodes(RaliTrieNode[] newNodes){
+<b class="fc"><i>25</i>&nbsp;        isLeaf = false;</b>
+<b class="fc"><i>26</i>&nbsp;        this.nodes = newNodes;</b>
+<b class="fc"><i>27</i>&nbsp;    }</b>
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    /**
+<i>30</i>&nbsp;     * Getter for RaliTrieNode
+<i>31</i>&nbsp;     * @return returns nodes of the RaliTrieNode
+<i>32</i>&nbsp;     */
+<i>33</i>&nbsp;    public RaliTrieNode[] getNodes(){
+<b class="fc"><i>34</i>&nbsp;        return nodes;</b>
+<i>35</i>&nbsp;    }
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;    /**
+<i>38</i>&nbsp;     * Getter for ammount in RaliTrieNode
+<i>39</i>&nbsp;     * @return Returns the ammount of the current node
+<i>40</i>&nbsp;     */
+<i>41</i>&nbsp;    public int getAmmount(){
+<b class="fc"><i>42</i>&nbsp;        return this.ammount;</b>
+<i>43</i>&nbsp;    }
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;    /**
+<i>46</i>&nbsp;     * Setter for the ammount
+<i>47</i>&nbsp;     * @param a int for setting the ammount
+<i>48</i>&nbsp;     */
+<i>49</i>&nbsp;    public void setAmmount(int a) {
+<b class="fc"><i>50</i>&nbsp;        this.ammount = a;</b>
+<b class="fc"><i>51</i>&nbsp;    }</b>
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;    /**
+<i>54</i>&nbsp;     * Getter for the value of the RaliTrieNode
+<i>55</i>&nbsp;     * @return Value of the RaliTrieNode
+<i>56</i>&nbsp;     */
+<i>57</i>&nbsp;    public Type getValue(){
+<b class="fc"><i>58</i>&nbsp;        return this.value;</b>
+<i>59</i>&nbsp;    }
+<i>60</i>&nbsp;
+<i>61</i>&nbsp;    /**
+<i>62</i>&nbsp;     * toString method RaliTrieNode
+<i>63</i>&nbsp;     * @return Returns the Type of the node and ammount
+<i>64</i>&nbsp;     */
+<i>65</i>&nbsp;    @Override
+<i>66</i>&nbsp;    public String toString(){
+<b class="nc"><i>67</i>&nbsp;        return value.toString() + &quot;: &quot; +ammount;</b>
+<i>68</i>&nbsp;    }
+<i>69</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2015-09-05 13:50</div>
+</div>
+</body>
+</html>
